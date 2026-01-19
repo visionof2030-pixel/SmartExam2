@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="theme-color" content="#020824">
+    <meta name="theme-color" content="#0c2d41">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <title>نُبـل - أداة التعلم الذكية</title>
@@ -52,6 +52,9 @@
             --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-success: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             --gradient-accent: linear-gradient(135deg, #2a9d8f 0%, #4ecdc4 100%);
+            --loading-bg: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+            --loading-text: #1a4865;
+            --loading-accent: #2a6a8f;
         }
         
         body {
@@ -72,95 +75,76 @@
             }
         }
         
-        /* البار العلوي - محسن ليغطي الزوايا */
+        /* البار العلوي */
         .top-bar {
-            background: linear-gradient(135deg, rgba(8, 32, 48, 0.98) 0%, rgba(12, 45, 65, 0.98) 100%);
-            padding: 16px 20px;
+            background: rgba(12, 45, 65, 0.95);
+            padding: 12px 16px;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--accent-light);
-            font-weight: 700;
+            font-weight: 500;
             position: relative;
             width: 100%;
-            border-bottom: 2px solid rgba(42, 157, 143, 0.3);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
-            z-index: 1000;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .top-bar i {
-            margin-left: 8px;
-            color: #4ecdc4;
         }
         
         /* الهيدر الرئيسي */
         .header {
-            padding: 25px 16px 20px;
+            padding: 20px 16px;
             text-align: center;
             background: linear-gradient(135deg, rgba(12, 45, 65, 0.9) 0%, rgba(26, 72, 101, 0.9) 100%);
             position: relative;
             overflow: hidden;
             width: 100%;
-            margin-top: -1px;
         }
         
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             margin-bottom: 15px;
         }
         
         .logo-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: var(--gradient-accent);
-            border-radius: 18px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: white;
-            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.5);
+            box-shadow: 0 6px 20px rgba(42, 157, 143, 0.4);
             transform: rotate(-5deg);
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-10px) rotate(-5deg); }
         }
         
         .logo-text {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #4ecdc4;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             position: relative;
-            margin-top: 5px;
         }
         
         .logo-text::after {
             content: "ُ";
             position: absolute;
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--accent-light);
-            right: -6px;
-            top: -15px;
-            text-shadow: 0 0 10px rgba(78, 205, 196, 0.7);
+            right: -4px;
+            top: -10px;
         }
         
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--gray-light);
             max-width: 100%;
-            margin: 10px auto 0;
+            margin: 0 auto;
             opacity: 0.95;
             font-weight: 300;
             line-height: 1.6;
-            padding: 0 15px;
+            padding: 0 10px;
         }
         
         /* الحاوية الرئيسية */
@@ -176,14 +160,13 @@
         .control-card {
             background: rgba(255, 255, 255, 0.07);
             border-radius: var(--border-radius);
-            padding: 25px 20px;
-            margin-bottom: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: var(--shadow-light);
             position: relative;
             width: 100%;
             box-sizing: border-box;
-            backdrop-filter: blur(10px);
         }
         
         .control-card::before {
@@ -192,7 +175,7 @@
             top: 0;
             right: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--gradient-accent);
             border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
@@ -201,8 +184,8 @@
         .mode-tabs {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             width: 100%;
         }
         
@@ -210,7 +193,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--border-radius-sm);
-            padding: 18px 15px;
+            padding: 16px 12px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
@@ -220,49 +203,49 @@
             justify-content: center;
             position: relative;
             width: 100%;
-            min-height: 70px;
+            min-height: 60px;
         }
         
         .mode-tab.active {
             background: rgba(42, 157, 143, 0.2);
             border-color: var(--accent);
-            box-shadow: 0 5px 20px rgba(42, 157, 143, 0.25);
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.2);
         }
         
         .mode-tab i {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
             color: var(--accent-light);
         }
         
         .mode-tab span {
-            font-weight: 800;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1rem;
             color: var(--light);
         }
         
         /* إعدادات التحكم */
         .control-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             width: 100%;
         }
         
         .control-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 700;
             color: var(--accent-light);
-            font-size: 1.1rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         select, textarea, input[type="file"] {
             width: 100%;
-            padding: 16px 18px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--border-radius-sm);
             color: var(--light);
             font-family: 'Tajawal', sans-serif;
@@ -271,17 +254,10 @@
             box-sizing: border-box;
             -webkit-appearance: none;
             appearance: none;
-            backdrop-filter: blur(5px);
-        }
-        
-        select:focus, textarea:focus, input[type="file"]:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
-            outline: none;
         }
         
         textarea {
-            min-height: 130px;
+            min-height: 120px;
             resize: vertical;
             line-height: 1.6;
         }
@@ -289,44 +265,39 @@
         /* زر التنفيذ */
         .execute-btn {
             width: 100%;
-            padding: 20px;
+            padding: 18px;
             background: var(--gradient-accent);
             color: white;
             border: none;
             border-radius: var(--border-radius-sm);
             font-family: 'Tajawal', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.35);
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(42, 157, 143, 0.3);
             position: relative;
             margin-top: 10px;
-            min-height: 60px;
-            letter-spacing: 0.5px;
+            min-height: 50px;
         }
         
         .execute-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(42, 157, 143, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(42, 157, 143, 0.4);
         }
         
-        .execute-btn:active {
-            transform: translateY(-2px);
-        }
-        
-        /* شاشة الانتظار - تصميم ليلي مع صقر */
+        /* شاشة الانتظار - تصميم جديد باللون الأبيض */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #020824;
+            background: var(--loading-bg);
             display: none;
             justify-content: center;
             align-items: center;
@@ -335,7 +306,6 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             overflow: hidden;
-            font-family: 'Tajawal', sans-serif;
         }
         
         .loading-overlay.active {
@@ -344,182 +314,100 @@
             animation: fadeIn 0.5s ease;
         }
         
-        #sky {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at bottom, #0b1d46, #020824 70%);
-            z-index: 1;
-        }
-        
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: twinkle 3s infinite ease-in-out;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-        
-        #moon {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            top: 40px;
-            right: 60px;
-            background: radial-gradient(circle, #fff, #d9d9d9);
-            box-shadow:
-                0 0 40px rgba(255, 255, 255, 0.6),
-                0 0 80px rgba(255, 255, 255, 0.3);
-            z-index: 2;
-        }
-        
-        #falcon {
-            position: absolute;
-            width: 180px;
-            top: 60px;
-            left: -220px;
-            animation: fly 14s linear infinite;
-            transform-origin: center;
-            filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.6));
-            z-index: 3;
-        }
-        
-        #falcon img {
-            width: 100%;
-            display: block;
-            animation: flap 2s ease-in-out infinite;
-            transform-origin: center;
-        }
-        
-        @keyframes flap {
-            0% { transform: scaleY(1); }
-            25% { transform: scaleY(0.85); }
-            50% { transform: scaleY(0.7); }
-            75% { transform: scaleY(0.85); }
-            100% { transform: scaleY(1); }
-        }
-        
-        @keyframes fly {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(160vw); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* محتوى شاشة الانتظار */
         .loading-content {
             position: relative;
-            z-index: 4;
+            z-index: 3;
             text-align: center;
-            max-width: 800px;
+            max-width: 600px;
             padding: 0 20px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        
-        .loading-developer {
-            font-size: 0.9rem;
-            color: white;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 40px;
-            z-index: 5;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .loading-developer i {
-            margin-left: 8px;
-            color: #4ecdc4;
-        }
-        
-        .loading-message {
-            margin-bottom: 60px;
-            z-index: 5;
-            width: 100%;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            border: 2px solid rgba(26, 72, 101, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
         }
         
         .loading-title {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 15px;
-            color: white;
-            line-height: 1.3;
-            text-shadow: 0 0 20px rgba(78, 205, 196, 0.7);
-            animation: titleGlow 4s ease-in-out infinite;
-            position: relative;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 80%;
-            margin: 40px auto 20px;
-            font-size: 80%;
-        }
-        
-        @keyframes titleGlow {
-            0%, 100% { text-shadow: 0 0 20px rgba(78, 205, 196, 0.7); }
-            50% { text-shadow: 0 0 30px rgba(78, 205, 196, 1); }
+            color: var(--loading-text);
+            background: linear-gradient(45deg, #1a4865, #2a6a8f, #4d96ff, #2a9d8f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientTitle 5s ease infinite;
         }
         
         .loading-subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
+            font-size: 1.4rem;
+            color: var(--loading-accent);
+            font-weight: 600;
             margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.6;
-            padding: 0 20px;
+        }
+        
+        .loading-animation {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .loading-spinner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(26, 72, 101, 0.1);
+            border-top-color: var(--loading-accent);
+            animation: spinner 1.5s linear infinite;
+        }
+        
+        .loading-spinner-inner {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid rgba(26, 72, 101, 0.1);
+            border-bottom-color: #4d96ff;
+            animation: spinner 2s linear infinite reverse;
+        }
+        
+        .loading-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--loading-accent);
+            animation: pulse 2s infinite;
         }
         
         .loading-progress-container {
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 5;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            margin: 0 auto 30px;
         }
         
         .loading-progress-text {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 10px;
+            color: var(--loading-text);
             font-weight: 600;
-            font-size: 1.1rem;
         }
         
         .loading-progress {
             width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            height: 15px;
+            background: rgba(26, 72, 101, 0.1);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+            border: 2px solid rgba(26, 72, 101, 0.2);
         }
         
         .loading-progress-bar {
@@ -528,10 +416,10 @@
             right: 0;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #2a9d8f, #4ecdc4);
+            background: linear-gradient(90deg, #1a4865, #2a6a8f, #4d96ff);
             border-radius: 10px;
+            animation: progressBar 3s ease-in-out infinite;
             transition: width 0.5s ease;
-            box-shadow: 0 0 20px rgba(78, 205, 196, 0.6);
         }
         
         .loading-progress-bar::after {
@@ -548,85 +436,90 @@
             animation: shine 2s infinite;
         }
         
+        .loading-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: rgba(26, 72, 101, 0.1);
+            padding: 15px 20px;
+            border-radius: var(--border-radius-sm);
+            min-width: 100px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(26, 72, 101, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--loading-text);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--loading-accent);
+            font-weight: 600;
+        }
+        
+        .loading-footer {
+            margin-top: 20px;
+        }
+        
+        .loading-footer-text {
+            font-size: 1rem;
+            color: var(--loading-accent);
+            font-weight: 500;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 10px;
+        }
+        
+        .loading-timer {
+            font-size: 0.9rem;
+            color: var(--loading-accent);
+            font-weight: 600;
+        }
+        
+        /* الأنيميشن الجديدة */
+        @keyframes gradientTitle {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes progressBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
         @keyframes shine {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
         
-        .loading-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            z-index: 5;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            min-width: 110px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        .stat-label {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-        }
-        
-        .loading-footer {
-            margin-top: 30px;
-            z-index: 5;
-        }
-        
-        .loading-footer-text {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
-            line-height: 1.5;
-            max-width: 500px;
-            margin: 0 auto 20px;
-        }
-        
-        .loading-timer {
-            font-size: 1.1rem;
-            color: #4ecdc4;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(78, 205, 196, 0.1);
-            padding: 12px 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(78, 205, 196, 0.3);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .loading-timer i {
-            font-size: 1.3rem;
-        }
-        
         /* صفحة الأسئلة */
-        .quiz-page {
+        .quiz-page, .flashcards-page, .summary-page {
             position: fixed;
             top: 0;
             left: 0;
@@ -640,32 +533,30 @@
             transition: opacity 0.5s ease;
         }
         
-        .quiz-page.active {
+        .quiz-page.active, .flashcards-page.active, .summary-page.active {
             display: block;
             opacity: 1;
         }
         
-        .quiz-header {
+        .page-header {
             background: rgba(12, 45, 65, 0.95);
             padding: 20px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid rgba(42, 157, 143, 0.3);
-            backdrop-filter: blur(10px);
         }
         
-        .quiz-title {
-            font-size: 1.6rem;
+        .page-title {
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--accent-light);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
         .back-btn {
@@ -673,129 +564,26 @@
             border: 2px solid var(--accent);
             border-radius: var(--border-radius-sm);
             color: var(--accent-light);
-            padding: 14px 28px;
+            padding: 12px 24px;
             font-family: 'Tajawal', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(5px);
+            gap: 8px;
         }
         
         .back-btn:hover {
             background: rgba(42, 157, 143, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3);
+            transform: translateY(-2px);
         }
         
-        .quiz-container {
-            padding: 25px 16px;
+        .page-container {
+            padding: 20px 16px;
             max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        /* صفحة الفلاش كاردز */
-        .flashcards-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
-            z-index: 10000;
-            overflow-y: auto;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .flashcards-page.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .flashcards-header {
-            background: rgba(12, 45, 65, 0.95);
-            padding: 20px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid rgba(42, 157, 143, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        
-        .flashcards-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--accent-light);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .flashcards-container {
-            padding: 30px 16px;
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        /* صفحة التلخيص */
-        .summary-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
-            z-index: 10000;
-            overflow-y: auto;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .summary-page.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .summary-header {
-            background: rgba(12, 45, 65, 0.95);
-            padding: 20px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid rgba(42, 157, 143, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        
-        .summary-title-header {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--accent-light);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .summary-container {
-            padding: 30px 16px;
-            max-width: 900px;
             margin: 0 auto;
         }
         
@@ -803,8 +591,8 @@
         .question {
             background: rgba(255, 255, 255, 0.07);
             border-radius: var(--border-radius);
-            padding: 30px 25px;
-            margin-bottom: 30px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: var(--shadow-light);
             position: relative;
@@ -812,7 +600,6 @@
             box-sizing: border-box;
             animation: fadeIn 0.5s ease;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
         }
         
         .question:hover {
@@ -828,7 +615,7 @@
         }
         
         .question-text {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--light);
             line-height: 1.6;
@@ -839,15 +626,15 @@
         .question-number {
             background: var(--gradient-accent);
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 1.4rem;
-            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.5);
+            font-size: 1.3rem;
+            box-shadow: 0 6px 15px rgba(42, 157, 143, 0.4);
             align-self: flex-start;
         }
         
@@ -864,7 +651,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--border-radius-sm);
-            padding: 20px;
+            padding: 18px;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
@@ -927,15 +714,15 @@
         .option-letter {
             background: rgba(255, 255, 255, 0.1);
             color: var(--light);
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
             flex-shrink: 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: var(--transition);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
@@ -954,79 +741,19 @@
         }
         
         .option-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             flex: 1;
             line-height: 1.5;
         }
         
-        /* تصميم البطاقات التعليمية في صفحتها الخاصة */
-        .flashcard-page {
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: var(--border-radius);
-            padding: 40px 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: var(--shadow-light);
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-        
-        .flashcard-page:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        }
-        
-        .flashcard-front-page, .flashcard-back-page {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--light);
-            line-height: 1.6;
-            max-width: 100%;
-            padding: 0 20px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .flashcard-back-page {
-            color: var(--accent-light);
-        }
-        
-        .flashcard-counter-page {
-            margin-top: 25px;
-            font-size: 1.1rem;
-            color: var(--gray-light);
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 10px 25px;
-            border-radius: 25px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .flashcard-nav-page {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-        
-        .flashcard-btn-page {
-            background: rgba(255, 255, 255, 0.07);
-            border: 2px solid rgba(255, 255, 255, 0.12);
+        /* زر تفسير الخيارات الخاطئة */
+        .wrong-explanation-btn {
+            background: linear-gradient(135deg, var(--warning) 0%, #f1c40f 100%);
+            color: var(--primary-dark);
+            border: none;
             border-radius: var(--border-radius-sm);
-            color: var(--light);
-            padding: 16px 25px;
+            padding: 15px 30px;
             font-family: 'Tajawal', sans-serif;
             font-size: 1.1rem;
             font-weight: 700;
@@ -1035,51 +762,225 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 130px;
-            min-height: 55px;
-            backdrop-filter: blur(5px);
+            gap: 12px;
+            margin: 30px auto;
+            min-height: 50px;
+            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.3);
         }
         
-        .flashcard-btn-page:hover {
-            background: rgba(42, 157, 143, 0.2);
-            border-color: var(--accent);
+        .wrong-explanation-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.3);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.4);
         }
         
-        /* تصميم التلخيص في صفحته الخاصة */
-        .summary-page-content {
+        .wrong-explanation-btn i {
+            font-size: 1.2rem;
+        }
+        
+        /* التغذية الراجعة المحسنة للإجابة الصحيحة فقط */
+        .feedback {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: var(--border-radius-sm);
+            animation: fadeIn 0.5s ease;
+            background: rgba(39, 174, 96, 0.15);
+            border-right: 5px solid var(--success);
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.2);
+        }
+        
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feedback-header i {
+            font-size: 2rem;
+            color: var(--success);
+            filter: drop-shadow(0 3px 8px rgba(39, 174, 96, 0.5));
+        }
+        
+        .feedback-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0;
+            color: var(--success-light);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feedback-content {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--light);
+            margin-bottom: 20px;
+        }
+        
+        .feedback-details {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-sm);
+            border-right: 4px solid var(--success-light);
+            animation: fadeIn 0.5s ease 0.3s both;
+        }
+        
+        /* قسم شرح الخيارات الخاطئة */
+        .wrong-explanations-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(231, 76, 60, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .wrong-explanation {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: var(--border-radius-sm);
+            border-right: 4px solid var(--error);
+            animation: fadeIn 0.5s ease 0.5s both;
+        }
+        
+        .wrong-explanation h4 {
+            color: var(--error);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .wrong-explanation h4 i {
+            font-size: 1.2rem;
+        }
+        
+        .wrong-explanation-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--light);
+        }
+        
+        /* تصميم البطاقات التعليمية - صفحة خاصة */
+        .flashcards-container {
+            padding: 20px 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .flashcard {
             background: rgba(255, 255, 255, 0.07);
             border-radius: var(--border-radius);
-            padding: 30px 25px;
-            margin-bottom: 25px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: var(--shadow-light);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+        }
+        
+        .flashcard-front, .flashcard-back {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            line-height: 1.6;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+        
+        .flashcard-back {
+            color: var(--accent-light);
+        }
+        
+        .flashcard-counter {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--gray-light);
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        
+        .flashcard-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .flashcard-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--border-radius-sm);
+            color: var(--light);
+            padding: 14px 20px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 120px;
+            min-height: 50px;
+        }
+        
+        .flashcard-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        /* تصميم التلخيص - صفحة خاصة */
+        .summary-container {
+            padding: 20px 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .summary {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: var(--border-radius);
+            padding: 25px 20px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: var(--shadow-light);
             position: relative;
             width: 100%;
-            backdrop-filter: blur(10px);
         }
         
-        .summary-title-page {
-            font-size: 2rem;
+        .summary-title {
+            font-size: 1.8rem;
             font-weight: 900;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: var(--accent-light);
             text-align: center;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         
-        .summary-point-page {
-            margin-bottom: 20px;
-            padding: 20px;
+        .summary-point {
+            margin-bottom: 16px;
+            padding: 16px;
             background: rgba(255, 255, 255, 0.04);
             border-radius: var(--border-radius-sm);
             border-right: 4px solid var(--accent);
@@ -1088,22 +989,22 @@
             width: 100%;
         }
         
-        .summary-point-page:hover {
+        .summary-point:hover {
             background: rgba(255, 255, 255, 0.07);
             transform: translateX(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .summary-point-text-page {
-            font-size: 1.2rem;
+        .summary-point-text {
+            font-size: 1rem;
             line-height: 1.6;
             font-weight: 500;
+            color: var(--light);
         }
         
         /* تخصيص خيارات تحميل الملف */
         .file-upload-area {
             width: 100%;
-            padding: 20px;
+            padding: 16px;
             background: rgba(255, 255, 255, 0.06);
             border: 2px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--border-radius-sm);
@@ -1111,29 +1012,28 @@
             transition: var(--transition);
             text-align: center;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-sizing: border-box;
-            backdrop-filter: blur(5px);
         }
         
         .file-upload-label {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             cursor: pointer;
         }
         
         .file-upload-label i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--accent-light);
         }
         
         .upload-options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 10px;
             width: 100%;
         }
         
@@ -1141,27 +1041,21 @@
             background: rgba(42, 157, 143, 0.2);
             border: 1px solid rgba(42, 157, 143, 0.4);
             border-radius: var(--border-radius-sm);
-            padding: 16px;
+            padding: 14px;
             color: var(--accent-light);
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 600;
             width: 100%;
-            min-height: 55px;
-            backdrop-filter: blur(5px);
-        }
-        
-        .upload-option-btn:hover {
-            background: rgba(42, 157, 143, 0.3);
-            transform: translateY(-3px);
+            min-height: 50px;
         }
         
         .image-preview {
-            margin-top: 20px;
+            margin-top: 15px;
             max-width: 100%;
             border-radius: var(--border-radius-sm);
             display: none;
@@ -1184,7 +1078,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            margin-top: 20px;
+            margin-top: 15px;
             display: none;
         }
         
@@ -1196,49 +1090,44 @@
         
         .camera-controls {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
+            gap: 15px;
             z-index: 10;
         }
         
         .camera-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(231, 111, 81, 0.9);
-            border: 3px solid white;
+            background: rgba(231, 111, 81, 0.8);
+            border: 2px solid white;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 1.4rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .camera-btn:hover {
-            transform: scale(1.1);
+            font-size: 1.2rem;
         }
         
         /* الأصوات */
         .sound-controls {
             position: fixed;
-            bottom: 25px;
-            left: 25px;
+            bottom: 20px;
+            left: 20px;
             z-index: 100;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
         
         .sound-btn {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(12, 45, 65, 0.9);
+            background: rgba(12, 45, 65, 0.8);
             border: 2px solid var(--accent);
             color: var(--accent-light);
             display: flex;
@@ -1246,15 +1135,12 @@
             align-items: center;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+            font-size: 1.2rem;
         }
         
         .sound-btn:hover {
-            background: rgba(42, 157, 143, 0.9);
+            background: rgba(42, 157, 143, 0.8);
             transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.4);
         }
         
         .sound-btn.muted {
@@ -1275,7 +1161,6 @@
             width: 100%;
             box-sizing: border-box;
             animation: fadeIn 0.5s ease;
-            backdrop-filter: blur(5px);
         }
         
         .message.success {
@@ -1300,7 +1185,7 @@
         @media (min-width: 768px) {
             .container {
                 max-width: 90%;
-                padding: 35px 25px;
+                padding: 30px 20px;
             }
             
             .mode-tabs {
@@ -1310,7 +1195,7 @@
             
             .mode-tab {
                 flex: 1;
-                min-width: 160px;
+                min-width: 150px;
             }
             
             .question-header {
@@ -1322,7 +1207,7 @@
             .options {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 15px;
             }
             
             .upload-options {
@@ -1332,67 +1217,60 @@
             
             .upload-option-btn {
                 flex: 1;
-                min-width: 150px;
+                min-width: 140px;
             }
             
-            .flashcard-nav-page {
+            .flashcard-nav {
                 flex-wrap: nowrap;
-            }
-            
-            .loading-title {
-                font-size: 2.5rem;
-            }
-            
-            .loading-subtitle {
-                font-size: 1.7rem;
-            }
-            
-            .quiz-container {
-                padding: 35px 25px;
-            }
-            
-            .flashcards-container, .summary-container {
-                padding: 40px 25px;
-            }
-            
-            #falcon {
-                width: 220px;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 1000px;
-                padding: 50px 30px;
-            }
-            
-            .options {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            }
-            
-            .flashcard-page {
-                min-height: 400px;
-                padding: 60px 50px;
-            }
-            
-            .flashcard-front-page, .flashcard-back-page {
-                font-size: 2.2rem;
             }
             
             .loading-title {
                 font-size: 3rem;
             }
             
-            .quiz-container {
-                padding: 50px;
+            .loading-subtitle {
+                font-size: 1.6rem;
             }
             
-            .flashcards-container, .summary-container {
-                padding: 50px;
+            .quiz-container, .flashcards-container, .summary-container {
+                padding: 30px 20px;
             }
             
-            #falcon {
-                width: 250px;
+            .flashcard {
+                min-height: 350px;
+                padding: 40px 30px;
+            }
+            
+            .flashcard-front, .flashcard-back {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+                padding: 40px 20px;
+            }
+            
+            .options {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .flashcard {
+                min-height: 400px;
+                padding: 50px 40px;
+            }
+            
+            .flashcard-front, .flashcard-back {
+                font-size: 2rem;
+            }
+            
+            .loading-title {
+                font-size: 3.5rem;
+            }
+            
+            .quiz-container, .flashcards-container, .summary-container {
+                padding: 40px;
             }
         }
         
@@ -1412,33 +1290,23 @@
         .hidden {
             display: none !important;
         }
-        
-        .quiz-hidden {
-            display: none;
-        }
     </style>
 </head>
 
 <body>
     <!-- شاشة الانتظار -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div id="sky">
-            <div id="moon"></div>
-        </div>
-        
-        <div id="falcon">
-            <img src="https://i.ibb.co/yFgvtvrw/IMG-2428.png">
-        </div>
-        
         <div class="loading-content">
-            <div class="loading-developer">
-                <i class="fas fa-code"></i> تنفيذ وتطوير معلم اللغة الإنجليزية: فهد الخالدي
+            <div class="loading-animation">
+                <div class="loading-spinner"></div>
+                <div class="loading-spinner-inner"></div>
+                <div class="loading-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
             </div>
             
-            <div class="loading-message">
-                <h1 class="loading-title">العلم نُبل والجهل سقوط</h1>
-                <p class="loading-subtitle">على مهلٍ، يشق نور العلم ظلام الجهل كحلمٍ جميل</p>
-            </div>
+            <h1 class="loading-title" id="loadingTitle">العلم نُبل والجهل سقوط</h1>
+            <p class="loading-subtitle" id="loadingSubtitle">أداة التعلم الذكية</p>
             
             <div class="loading-progress-container">
                 <div class="loading-progress-text">
@@ -1466,19 +1334,16 @@
             </div>
             
             <div class="loading-footer">
-                <p class="loading-footer-text">يتم حالياً تحليل المحتوى وإنشاء الأسئلة التعليمية الذكية تحت ضوء القمر</p>
-                <div class="loading-timer">
-                    <i class="fas fa-clock"></i>
-                    <span id="loadingTimer">جارٍ المعالجة...</span>
-                </div>
+                <p class="loading-footer-text" id="loadingFooter">قد يستغرق إنشاء الأسئلة دقيقة إلى ٣ دقائق</p>
+                <p class="loading-timer" id="loadingTimer">جارٍ المعالجة...</p>
             </div>
         </div>
     </div>
     
     <!-- صفحة الأسئلة -->
     <div class="quiz-page" id="quizPage">
-        <div class="quiz-header">
-            <div class="quiz-title">
+        <div class="page-header">
+            <div class="page-title">
                 <i class="fas fa-brain"></i>
                 <span>اختبار المعرفة</span>
             </div>
@@ -1491,14 +1356,14 @@
         <div class="quiz-container" id="quizContainer"></div>
     </div>
     
-    <!-- صفحة الفلاش كاردز -->
+    <!-- صفحة البطاقات التعليمية -->
     <div class="flashcards-page" id="flashcardsPage">
-        <div class="flashcards-header">
-            <div class="flashcards-title">
+        <div class="page-header">
+            <div class="page-title">
                 <i class="fas fa-layer-group"></i>
                 <span>البطاقات التعليمية</span>
             </div>
-            <button class="back-btn" onclick="backToMainFromFlashcards()">
+            <button class="back-btn" onclick="backToMain()">
                 <i class="fas fa-arrow-right"></i>
                 العودة للرئيسية
             </button>
@@ -1509,12 +1374,12 @@
     
     <!-- صفحة التلخيص -->
     <div class="summary-page" id="summaryPage">
-        <div class="summary-header">
-            <div class="summary-title-header">
+        <div class="page-header">
+            <div class="page-title">
                 <i class="fas fa-scroll"></i>
                 <span>التلخيص</span>
             </div>
-            <button class="back-btn" onclick="backToMainFromSummary()">
+            <button class="back-btn" onclick="backToMain()">
                 <i class="fas fa-arrow-right"></i>
                 العودة للرئيسية
             </button>
@@ -1525,7 +1390,7 @@
     
     <!-- الصفحة الرئيسية -->
     <div id="mainPage">
-        <!-- البار العلوي المحسن -->
+        <!-- البار العلوي -->
         <div class="top-bar">
             <i class="fas fa-code"></i> تطوير: فهد الخالدي | نُبـل - أداة التعلم الذكية
         </div>
@@ -1717,16 +1582,16 @@
         const summaryContainer = document.getElementById('summaryContainer');
         
         // عناصر شاشة الانتظار
-        const loadingTitle = document.querySelector('.loading-title');
-        const loadingSubtitle = document.querySelector('.loading-subtitle');
+        const loadingTitle = document.getElementById('loadingTitle');
+        const loadingSubtitle = document.getElementById('loadingSubtitle');
         const progressStatus = document.getElementById('progressStatus');
         const progressPercent = document.getElementById('progressPercent');
         const progressBar = document.getElementById('progressBar');
         const statQuestions = document.getElementById('statQuestions');
         const statSeconds = document.getElementById('statSeconds');
         const statProgress = document.getElementById('statProgress');
+        const loadingFooter = document.getElementById('loadingFooter');
         const loadingTimer = document.getElementById('loadingTimer');
-        const sky = document.getElementById('sky');
         
         // عناصر تحميل الملفات الجديدة
         const fileInput = document.getElementById('file-input');
@@ -1759,26 +1624,14 @@
         let totalQuestions = 0;
         let currentQuizData = null;
         let currentMode = 'manual';
-        let flashcardsData = null;
-        let summaryData = null;
+        let currentCardsData = null;
+        let currentSummaryData = null;
         
         // إعدادات الصوت
         let soundEnabled = true;
         let musicEnabled = false;
         backgroundMusic.volume = 0.3;
         loadingMusic.volume = 0.2;
-        
-        // إنشاء النجوم
-        function createStars() {
-            for(let i = 0; i < 160; i++) {
-                let star = document.createElement("div");
-                star.className = "star";
-                star.style.top = Math.random() * window.innerHeight + "px";
-                star.style.left = Math.random() * window.innerWidth + "px";
-                star.style.animationDelay = (Math.random() * 3) + "s";
-                loadingOverlay.appendChild(star);
-            }
-        }
         
         // تهيئة وضع التبويب
         modeTabs.forEach(tab => {
@@ -1883,6 +1736,14 @@
                 document.querySelectorAll('.upload-option-btn')[1].innerHTML = '<i class="fas fa-image"></i> Image';
                 document.querySelectorAll('.upload-option-btn')[2].innerHTML = '<i class="fas fa-camera"></i> Camera';
                 
+                // تحديث عناوين الصفحات
+                document.querySelector('#quizPage .page-title span').textContent = 'Knowledge Test';
+                document.querySelector('#flashcardsPage .page-title span').textContent = 'Flash Cards';
+                document.querySelector('#summaryPage .page-title span').textContent = 'Summary';
+                document.querySelectorAll('.back-btn').forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-arrow-right"></i> Back to Main';
+                });
+                
                 // تحديث رسالة الملف
                 const fileMessage = document.getElementById('file-message');
                 if (fileMessage) {
@@ -1891,12 +1752,9 @@
                 
                 // تحديث شاشة الانتظار
                 loadingTitle.textContent = 'Knowledge is nobility and ignorance is downfall';
-                loadingSubtitle.textContent = 'Slowly, the light of knowledge pierces the darkness of ignorance like a beautiful dream';
+                loadingSubtitle.textContent = 'Smart Learning Tool';
+                loadingFooter.textContent = 'Creating questions may take 1 to 3 minutes';
                 progressStatus.textContent = 'Gathering information...';
-                
-                // تحديث شعار المطور
-                document.querySelector('.loading-developer').innerHTML = '<i class="fas fa-code"></i> Implementation & Development: English Teacher Fahad Al-Khalidi';
-                document.querySelector('.loading-footer-text').textContent = 'Analyzing content and creating intelligent educational questions under moonlight';
             } else {
                 document.querySelector('.top-bar').innerHTML = '<i class="fas fa-code"></i> تطوير: فهد الخالدي | نُبـل - أداة التعلم الذكية';
                 document.querySelector('.header p').textContent = 'تعلمٌ أذكى… تحصيلٌ أرقى';
@@ -1915,6 +1773,14 @@
                 document.querySelectorAll('.upload-option-btn')[1].innerHTML = '<i class="fas fa-image"></i> صورة';
                 document.querySelectorAll('.upload-option-btn')[2].innerHTML = '<i class="fas fa-camera"></i> الكاميرا';
                 
+                // تحديث عناوين الصفحات
+                document.querySelector('#quizPage .page-title span').textContent = 'اختبار المعرفة';
+                document.querySelector('#flashcardsPage .page-title span').textContent = 'البطاقات التعليمية';
+                document.querySelector('#summaryPage .page-title span').textContent = 'التلخيص';
+                document.querySelectorAll('.back-btn').forEach(btn => {
+                    btn.innerHTML = '<i class="fas fa-arrow-right"></i> العودة للرئيسية';
+                });
+                
                 // تحديث رسالة الملف
                 const fileMessage = document.getElementById('file-message');
                 if (fileMessage) {
@@ -1923,12 +1789,9 @@
                 
                 // تحديث شاشة الانتظار
                 loadingTitle.textContent = 'العلم نُبل والجهل سقوط';
-                loadingSubtitle.textContent = 'على مهلٍ، يشق نور العلم ظلام الجهل كحلمٍ جميل';
+                loadingSubtitle.textContent = 'أداة التعلم الذكية';
+                loadingFooter.textContent = 'قد يستغرق إنشاء الأسئلة دقيقة إلى ٣ دقائق';
                 progressStatus.textContent = 'يجمع المعلومات...';
-                
-                // تحديث شعار المطور
-                document.querySelector('.loading-developer').innerHTML = '<i class="fas fa-code"></i> تنفيذ وتطوير معلم اللغة الإنجليزية: فهد الخالدي';
-                document.querySelector('.loading-footer-text').textContent = 'يتم حالياً تحليل المحتوى وإنشاء الأسئلة التعليمية الذكية تحت ضوء القمر';
             }
         }
         
@@ -2129,11 +1992,6 @@
         function showLoadingScreen(numQuestions) {
             totalQuestions = numQuestions;
             timerSeconds = 0;
-            
-            // إنشاء النجوم
-            createStars();
-            
-            // إظهار شاشة الانتظار
             loadingOverlay.style.display = 'flex';
             setTimeout(() => loadingOverlay.classList.add('active'), 10);
             document.body.style.overflow = 'hidden';
@@ -2228,10 +2086,6 @@
             const isEnglish = language.value === 'en';
             progressStatus.textContent = isEnglish ? "Complete! Loading results..." : "اكتمل! جارٍ تحميل النتائج...";
             
-            // إزالة النجوم
-            const stars = document.querySelectorAll('.star');
-            stars.forEach(star => star.remove());
-            
             setTimeout(() => {
                 loadingOverlay.classList.remove('active');
                 setTimeout(() => {
@@ -2242,25 +2096,11 @@
             }, 1000);
         }
         
-        // دالة العودة للصفحة الرئيسية من صفحة الأسئلة
+        // دالة العودة للصفحة الرئيسية
         function backToMain() {
             playSound('click');
             quizPage.classList.remove('active');
-            mainPage.style.display = 'block';
-            document.body.style.overflow = '';
-        }
-        
-        // دالة العودة للصفحة الرئيسية من صفحة الفلاش كاردز
-        function backToMainFromFlashcards() {
-            playSound('click');
             flashcardsPage.classList.remove('active');
-            mainPage.style.display = 'block';
-            document.body.style.overflow = '';
-        }
-        
-        // دالة العودة للصفحة الرئيسية من صفحة التلخيص
-        function backToMainFromSummary() {
-            playSound('click');
             summaryPage.classList.remove('active');
             mainPage.style.display = 'block';
             document.body.style.overflow = '';
@@ -2271,16 +2111,14 @@
             mainPage.style.display = 'none';
             quizPage.classList.add('active');
             document.body.style.overflow = 'auto';
-            // التمرير للأعلى
             window.scrollTo(0, 0);
         }
         
-        // دالة الانتقال لصفحة الفلاش كاردز
+        // دالة الانتقال لصفحة البطاقات التعليمية
         function goToFlashcardsPage() {
             mainPage.style.display = 'none';
             flashcardsPage.classList.add('active');
             document.body.style.overflow = 'auto';
-            // التمرير للأعلى
             window.scrollTo(0, 0);
         }
         
@@ -2289,7 +2127,6 @@
             mainPage.style.display = 'none';
             summaryPage.classList.add('active');
             document.body.style.overflow = 'auto';
-            // التمرير للأعلى
             window.scrollTo(0, 0);
         }
         
@@ -2369,12 +2206,10 @@
                 renderQuiz(JSON.parse(extractJSON(data.result)));
                 goToQuizPage();
             } else if (currentMode === 'flashcards') {
-                flashcardsData = JSON.parse(extractJSON(data.result));
-                renderFlashcardsPage(flashcardsData);
+                renderCards(JSON.parse(extractJSON(data.result)));
                 goToFlashcardsPage();
             } else if (currentMode === 'summary') {
-                summaryData = data.result;
-                renderSummaryPage(summaryData);
+                renderSummary(data.result);
                 goToSummaryPage();
             }
         }
@@ -2412,12 +2247,10 @@
             hideLoadingScreen();
             
             if (mode === 'summary') {
-                summaryData = data.result;
-                renderSummaryPage(summaryData);
+                renderSummary(data.result);
                 goToSummaryPage();
             } else if (mode === 'flashcards') {
-                flashcardsData = JSON.parse(extractJSON(data.result));
-                renderFlashcardsPage(flashcardsData);
+                renderCards(JSON.parse(extractJSON(data.result)));
                 goToFlashcardsPage();
             } else {
                 renderQuiz(JSON.parse(extractJSON(data.result)));
@@ -2635,8 +2468,8 @@
             }
         }
         
-        // دالة عرض البطاقات التعليمية في صفحتها الخاصة
-        function renderFlashcardsPage(data) {
+        // دالة عرض البطاقات التعليمية في صفحة خاصة
+        function renderCards(data) {
             if (!data || !data.cards || !Array.isArray(data.cards)) {
                 const isEnglish = language.value === 'en';
                 showMessage(isEnglish ? 
@@ -2646,72 +2479,74 @@
                 return;
             }
             
+            currentCardsData = data;
+            
             const isEnglish = language.value === 'en';
             
-            window.cards = data.cards;
             window.cardIndex = 0;
             
             flashcardsContainer.innerHTML = `
-                <div class="flashcard-page" onclick="flipCardPage()">
-                    <div class="flashcard-front-page">${data.cards[0].front}</div>
-                    <div class="flashcard-back-page hidden">${data.cards[0].back}</div>
-                    <div class="flashcard-counter-page">${cardIndex + 1} / ${data.cards.length}</div>
+                <div class="flashcard" onclick="flipCard()">
+                    <div class="flashcard-front">${data.cards[0].front}</div>
+                    <div class="flashcard-back hidden">${data.cards[0].back}</div>
+                    <div class="flashcard-counter">${cardIndex + 1} / ${data.cards.length}</div>
                 </div>
                 
-                <div class="flashcard-nav-page">
-                    <button class="flashcard-btn-page" onclick="prevCardPage()">
+                <div class="flashcard-nav">
+                    <button class="flashcard-btn" onclick="prevCard()">
                         <i class="fas fa-arrow-right"></i> ${isEnglish ? 'Previous' : 'السابق'}
                     </button>
-                    <button class="flashcard-btn-page" onclick="flipCardPage()">
+                    <button class="flashcard-btn" onclick="flipCard()">
                         <i class="fas fa-sync-alt"></i> ${isEnglish ? 'Flip Card' : 'قلب البطاقة'}
                     </button>
-                    <button class="flashcard-btn-page" onclick="nextCardPage()">
+                    <button class="flashcard-btn" onclick="nextCard()">
                         <i class="fas fa-arrow-left"></i> ${isEnglish ? 'Next' : 'التالي'}
                     </button>
                 </div>
             `;
         }
         
-        // دالة قلب البطاقة في صفحتها الخاصة
-        function flipCardPage() {
+        // دالة قلب البطاقة
+        function flipCard() {
             playSound('click');
-            const card = document.querySelector('.flashcard-page');
-            const front = card.querySelector('.flashcard-front-page');
-            const back = card.querySelector('.flashcard-back-page');
+            const card = document.querySelector('.flashcard');
+            const front = card.querySelector('.flashcard-front');
+            const back = card.querySelector('.flashcard-back');
             
-            // تأثير قلب البطاقة
-            card.style.transform = 'rotateY(90deg)';
+            front.classList.toggle('hidden');
+            back.classList.toggle('hidden');
+            
+            // إضافة تأثير التحريك
+            card.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                front.classList.toggle('hidden');
-                back.classList.toggle('hidden');
-                card.style.transform = 'rotateY(0deg)';
+                card.style.transform = 'scale(1)';
             }, 150);
         }
         
-        // دالة البطاقة التالية في صفحتها الخاصة
-        function nextCardPage() {
+        // دالة البطاقة التالية
+        function nextCard() {
             playSound('click');
-            cardIndex = (cardIndex + 1) % cards.length;
-            updateCardPage();
+            cardIndex = (cardIndex + 1) % currentCardsData.cards.length;
+            updateCard();
         }
         
-        // دالة البطاقة السابقة في صفحتها الخاصة
-        function prevCardPage() {
+        // دالة البطاقة السابقة
+        function prevCard() {
             playSound('click');
-            cardIndex = (cardIndex - 1 + cards.length) % cards.length;
-            updateCardPage();
+            cardIndex = (cardIndex - 1 + currentCardsData.cards.length) % currentCardsData.cards.length;
+            updateCard();
         }
         
-        // دالة تحديث البطاقة في صفحتها الخاصة
-        function updateCardPage() {
-            const card = document.querySelector('.flashcard-page');
-            const front = card.querySelector('.flashcard-front-page');
-            const back = card.querySelector('.flashcard-back-page');
-            const counter = card.querySelector('.flashcard-counter-page');
+        // دالة تحديث البطاقة
+        function updateCard() {
+            const card = document.querySelector('.flashcard');
+            const front = card.querySelector('.flashcard-front');
+            const back = card.querySelector('.flashcard-back');
+            const counter = card.querySelector('.flashcard-counter');
             
-            front.textContent = cards[cardIndex].front;
-            back.textContent = cards[cardIndex].back;
-            counter.textContent = `${cardIndex + 1} / ${cards.length}`;
+            front.textContent = currentCardsData.cards[cardIndex].front;
+            back.textContent = currentCardsData.cards[cardIndex].back;
+            counter.textContent = `${cardIndex + 1} / ${currentCardsData.cards.length}`;
             
             // التأكد من إظهار الوجه الأمامي
             back.classList.add('hidden');
@@ -2724,20 +2559,22 @@
             }, 150);
         }
         
-        // دالة عرض التلخيص في صفحته الخاصة
-        function renderSummaryPage(text) {
+        // دالة عرض التلخيص في صفحة خاصة
+        function renderSummary(text) {
+            currentSummaryData = text;
+            
             // تحويل النص إلى نقاط منسقة
             const paragraphs = text.split('\n').filter(p => p.trim().length > 0);
-            let summaryHTML = '<div class="summary-page-content">';
+            let summaryHTML = '<div class="summary">';
             
             const isEnglish = language.value === 'en';
-            summaryHTML += `<div class="summary-title-page"><i class="fas fa-scroll"></i> ${isEnglish ? 'Summary' : 'التلخيص'}</div>`;
+            summaryHTML += `<div class="summary-title"><i class="fas fa-scroll"></i> ${isEnglish ? 'Summary' : 'التلخيص'}</div>`;
             
             paragraphs.forEach((paragraph, idx) => {
                 summaryHTML += `
-                    <div class="summary-point-page">
+                    <div class="summary-point">
                         <i class="fas fa-lightbulb"></i>
-                        <div class="summary-point-text-page">${paragraph}</div>
+                        <div class="summary-point-text">${paragraph}</div>
                     </div>
                 `;
             });
@@ -2746,7 +2583,7 @@
             summaryContainer.innerHTML = summaryHTML;
         }
         
-        // دالة عرض الرسائل
+        // دالة لعرض رسالة
         function showMessage(text, type = 'info') {
             out.innerHTML = `
                 <div class="message ${type}">
