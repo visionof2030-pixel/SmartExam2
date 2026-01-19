@@ -55,15 +55,15 @@
         }
         
         body {
-    font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
-    color: var(--light);
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    line-height: 1.5;
-    margin: 0;
-    padding-top: calc(70px + env(safe-area-inset-top));
-}
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+        }
         
         /* تصحيح لـ iOS Safari */
         @supports (-webkit-touch-callout: none) {
@@ -73,24 +73,21 @@
         }
         
         /* البار العلوي - محسن ليغطي الزوايا */
-        ..top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: calc(70px + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(8, 32, 48, 0.98) 0%, rgba(12, 45, 65, 0.98) 100%);
-    z-index: 10000;
-    border-bottom-left-radius: 22px;
-    border-bottom-right-radius: 22px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
-}
+        .top-bar {
+            background: linear-gradient(135deg, rgba(8, 32, 48, 0.98) 0%, rgba(12, 45, 65, 0.98) 100%);
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 16px;
+            color: var(--accent-light);
+            font-weight: 700;
+            position: relative;
+            width: 100%;
+            border-bottom: 2px solid rgba(42, 157, 143, 0.3);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            z-index: 1000;
+            border-radius: 0 0 20px 20px;
+        }
         
         .top-bar i {
             margin-left: 8px;
@@ -105,7 +102,7 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            
+            margin-top: -1px;
         }
         
         .logo-container {
