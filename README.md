@@ -62,7 +62,8 @@
     min-height: -webkit-fill-available;
     line-height: 1.5;
     margin: 0;
-    
+    padding-top: calc(70px + env(safe-area-inset-top));
+}
         
         /* تصحيح لـ iOS Safari */
         @supports (-webkit-touch-callout: none) {
@@ -86,7 +87,9 @@
     justify-content: center;
     background: linear-gradient(135deg, rgba(8, 32, 48, 0.98) 0%, rgba(12, 45, 65, 0.98) 100%);
     z-index: 10000;
-    border-radius: 0;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
 }
         
         .top-bar i {
@@ -96,16 +99,14 @@
         
         /* الهيدر الرئيسي */
         .header {
-    padding: calc(25px + 70px + env(safe-area-inset-top)) 16px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(12, 45, 65, 0.9) 0%, rgba(26, 72, 101, 0.9) 100%);
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    margin-top: 0;
-    border-top-left-radius: 22px;
-    border-top-right-radius: 22px;
-}
+            padding: 25px 16px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(12, 45, 65, 0.9) 0%, rgba(26, 72, 101, 0.9) 100%);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: -1px;
+        }
         
         .logo-container {
             display: flex;
