@@ -1001,7 +1001,7 @@
             color: var(--light);
         }
         
-        /* تخصيص خيارات تحميل الملف */
+        /* **تحديث: تخصيص خيارات تحميل الملف - مدمجة** */
         .file-upload-area {
             width: 100%;
             padding: 16px;
@@ -1052,6 +1052,23 @@
             font-weight: 600;
             width: 100%;
             min-height: 50px;
+            position: relative;
+        }
+        
+        .upload-option-btn.active {
+            background: rgba(42, 157, 143, 0.4);
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.2);
+        }
+        
+        .upload-option-btn input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
         }
         
         .image-preview {
@@ -1059,6 +1076,7 @@
             max-width: 100%;
             border-radius: var(--border-radius-sm);
             display: none;
+            width: 100%;
         }
         
         .image-preview img {
@@ -1458,33 +1476,35 @@
                     <textarea id="topic" rows="4" placeholder="اكتب الموضوع أو النص الذي تريد إنشاء أسئلة أو تلخيص منه..."></textarea>
                 </div>
                 
-                <!-- منطقة تحميل الملف -->
+                <!-- **تحديث: منطقة تحميل الملف - مدمجة** -->
                 <div class="control-group hidden" id="file-group">
                     <label for="file"><i class="fas fa-upload"></i> اختر مصدر المحتوى</label>
                     
-                    <!-- خيارات تحميل الملف -->
+                    <!-- منطقة تحميل الملف المدمجة -->
                     <div class="file-upload-area">
-                        <label class="file-upload-label">
+                        <div class="file-upload-label">
                             <i class="fas fa-cloud-upload-alt"></i>
-                            <span id="upload-instruction">انقر لاختيار ملف أو استخدم الخيارات أدناه</span>
+                            <span id="upload-instruction">انقر على خيار لرفع ملف أو صورة</span>
                             
                             <div class="upload-options">
+                                <!-- ملف نصي -->
                                 <div class="upload-option-btn active" data-upload-type="file">
                                     <i class="fas fa-file"></i> ملف نصي
+                                    <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif">
                                 </div>
+                                
+                                <!-- صورة -->
                                 <div class="upload-option-btn" data-upload-type="image">
                                     <i class="fas fa-image"></i> صورة
+                                    <input type="file" id="image-input" accept="image/*">
                                 </div>
+                                
+                                <!-- الكاميرا -->
                                 <div class="upload-option-btn" data-upload-type="camera">
                                     <i class="fas fa-camera"></i> الكاميرا
+                                    <div class="camera-hidden-input"></div>
                                 </div>
                             </div>
-                            
-                            <!-- حقل اختيار الملف المخفي -->
-                            <input type="file" id="file-input" accept=".txt,.pdf,.doc,.docx,.jpg,.jpeg,.png,.gif">
-                            
-                            <!-- حقل اختيار الصورة -->
-                            <input type="file" id="image-input" accept="image/*" class="hidden">
                             
                             <!-- معاينة الصورة -->
                             <div class="image-preview" id="image-preview">
@@ -1503,7 +1523,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </label>
+                        </div>
                     </div>
                     
                     <div class="message" id="file-message" style="display: none;">
@@ -1593,9 +1613,7 @@
         const loadingFooter = document.getElementById('loadingFooter');
         const loadingTimer = document.getElementById('loadingTimer');
         
-        // عناصر تحميل الملفات الجديدة
-        const fileInput = document.getElementById('file-input');
-        const imageInput = document.getElementById('image-input');
+        // **تحديث: عناصر تحميل الملفات - مدمجة**
         const uploadOptions = document.querySelectorAll('.upload-option-btn');
         const uploadInstruction = document.getElementById('upload-instruction');
         const imagePreview = document.getElementById('image-preview');
@@ -1731,7 +1749,7 @@
                 document.querySelector('label[for="topic"]').innerHTML = '<i class="fas fa-book-open"></i> Write the topic here';
                 document.querySelector('#topic').placeholder = 'Write the topic or text you want to create questions or summarize from...';
                 document.querySelector('label[for="file"]').innerHTML = '<i class="fas fa-upload"></i> Choose content source';
-                uploadInstruction.textContent = 'Click to choose a file or use the options below';
+                uploadInstruction.textContent = 'Click on an option to upload a file or image';
                 document.querySelectorAll('.upload-option-btn')[0].innerHTML = '<i class="fas fa-file"></i> Text File';
                 document.querySelectorAll('.upload-option-btn')[1].innerHTML = '<i class="fas fa-image"></i> Image';
                 document.querySelectorAll('.upload-option-btn')[2].innerHTML = '<i class="fas fa-camera"></i> Camera';
@@ -1768,7 +1786,7 @@
                 document.querySelector('label[for="topic"]').innerHTML = '<i class="fas fa-book-open"></i> اكتب الموضوع هنا';
                 document.querySelector('#topic').placeholder = 'اكتب الموضوع أو النص الذي تريد إنشاء أسئلة أو تلخيص منه...';
                 document.querySelector('label[for="file"]').innerHTML = '<i class="fas fa-upload"></i> اختر مصدر المحتوى';
-                uploadInstruction.textContent = 'انقر لاختيار ملف أو استخدم الخيارات أدناه';
+                uploadInstruction.textContent = 'انقر على خيار لرفع ملف أو صورة';
                 document.querySelectorAll('.upload-option-btn')[0].innerHTML = '<i class="fas fa-file"></i> ملف نصي';
                 document.querySelectorAll('.upload-option-btn')[1].innerHTML = '<i class="fas fa-image"></i> صورة';
                 document.querySelectorAll('.upload-option-btn')[2].innerHTML = '<i class="fas fa-camera"></i> الكاميرا';
@@ -1795,9 +1813,15 @@
             }
         }
         
-        // إدارة خيارات التحميل
+        // **تحديث: إدارة خيارات التحميل المدمجة**
         uploadOptions.forEach(option => {
-            option.addEventListener('click', function() {
+            // النقر على زر الخيار
+            option.addEventListener('click', function(e) {
+                // منع النقر إذا كان على حقل الإدخال (سيعالج حقل الإدخال نفسه)
+                if (e.target.type === 'file') {
+                    return;
+                }
+                
                 playSound('click');
                 // إزالة النشط من جميع الخيارات
                 uploadOptions.forEach(opt => opt.classList.remove('active'));
@@ -1812,40 +1836,46 @@
                 
                 if (currentUploadType === 'file') {
                     uploadInstruction.textContent = isEnglish ? 
-                        'Click to choose a text file (TXT, PDF, DOC, DOCX)' : 
-                        'انقر لاختيار ملف نصي (TXT, PDF, DOC, DOCX)';
+                        'Click on the button to choose a text file' : 
+                        'انقر على الزر لاختيار ملف نصي';
                     imagePreview.style.display = 'none';
                     stopCamera();
+                    
+                    // تفعيل حقل الملف النصي
+                    const fileInput = this.querySelector('input[type="file"]');
+                    if (fileInput) {
+                        fileInput.click();
+                    }
                 } else if (currentUploadType === 'image') {
                     uploadInstruction.textContent = isEnglish ? 
-                        'Click to choose an image (JPG, PNG, GIF)' : 
-                        'انقر لاختيار صورة (JPG, PNG, GIF)';
+                        'Click on the button to choose an image' : 
+                        'انقر على الزر لاختيار صورة';
                     imagePreview.style.display = 'none';
                     stopCamera();
+                    
+                    // تفعيل حقل الصورة
+                    const imageInput = this.querySelector('input[type="file"]');
+                    if (imageInput) {
+                        imageInput.click();
+                    }
                 } else if (currentUploadType === 'camera') {
                     uploadInstruction.textContent = isEnglish ? 
-                        'Click to start the camera' : 
-                        'انقر لبدء الكاميرا';
+                        'Click on the button to start the camera' : 
+                        'انقر على الزر لبدء الكاميرا';
                     imagePreview.style.display = 'none';
                     startCamera();
                 }
-                
-                // إعادة تعيين الملف الحالي
-                currentFile = null;
             });
-        });
-        
-        // إدارة اختيار الملف
-        fileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                handleFileSelect(this.files[0]);
-            }
-        });
-        
-        // إدارة اختيار الصورة
-        imageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                handleFileSelect(this.files[0], true);
+            
+            // معالجة اختيار الملف داخل زر الخيار
+            const fileInput = option.querySelector('input[type="file"]');
+            if (fileInput) {
+                fileInput.addEventListener('change', function(e) {
+                    if (this.files && this.files[0]) {
+                        const uploadType = this.closest('.upload-option-btn').dataset.uploadType;
+                        handleFileSelect(this.files[0], uploadType === 'image');
+                    }
+                });
             }
         });
         
@@ -2147,20 +2177,11 @@
             }
             
             if (mode !== 'manual') {
-                if (!currentFile && currentUploadType !== 'camera') {
+                if (!currentFile) {
                     const isEnglish = language.value === 'en';
                     showMessage(isEnglish ? 
-                        "Please choose a file or take a picture" : 
-                        "الرجاء اختيار ملف أو التقاط صورة", 
-                    'error');
-                    return;
-                }
-                
-                if (currentUploadType === 'camera' && !previewImage.src) {
-                    const isEnglish = language.value === 'en';
-                    showMessage(isEnglish ? 
-                        "Please take a picture first" : 
-                        "الرجاء التقاط صورة أولاً", 
+                        "Please choose a file or take a picture first" : 
+                        "الرجاء اختيار ملف أو التقاط صورة أولاً", 
                     'error');
                     return;
                 }
@@ -2617,19 +2638,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             // تحسينات خاصة للجوال
             if (isMobile) {
-                // إضافة حدث للنقر على منطقة التحميل
-                document.querySelector('.file-upload-area').addEventListener('click', function(e) {
-                    if (e.target.closest('.upload-option-btn')) {
-                        return;
-                    }
-                    
-                    if (currentUploadType === 'image') {
-                        imageInput.click();
-                    } else {
-                        fileInput.click();
-                    }
-                });
-                
                 // تحسينات للشاشات الصغيرة
                 if (window.innerWidth < 768) {
                     // ضبط حجم الخط للحقول على iOS
